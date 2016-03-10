@@ -24,6 +24,7 @@ class Btconvert < Sinatra::Base
         btcStats = Blockchain::get_ticker()
         oneBtc = btcStats["#{cur}"].p15min
         redis.set("#{cur}:btc", oneBtc.to_f)
+        redis.expire("#{cur}:btc", 3600)
         convAmt = toConv * oneBtc
         body "#{convAmt}"
       else

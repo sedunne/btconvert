@@ -36,6 +36,8 @@ curl --data "btc=1.0&cur=JPY" https://domain.com/btconvert
 46291.33
 ```
 
+Currently the app will cache the '15 minute' rate for an hour.
+
 You can find a full list of supported currencies at: https://blockchain.info/ticker
 
 ### License
