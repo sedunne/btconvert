@@ -1,0 +1,6 @@
+.bundle
+tmp/pids/*
+tmp/sockets/*
+log/*
+vendor/*
+!*.gitkeep
