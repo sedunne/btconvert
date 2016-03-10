@@ -4,9 +4,15 @@ A very simple Sinatra app that converts a given BTC amount into a variety of cur
 
 ### Requirements
 
-BTConvert was tested with Ruby 2.1, but may work on other versions. Unicorn should be installed at the system level if you wish to launch the app that way, with the included unicorn.rb file. Access to a Redis instance for caching return data from Blockchain.info is needed as well.
+BTConvert was tested with Ruby 2.1, but may work on other versions. Unicorn and Bundler should be installed at the system level. Access to a Redis instance for caching return data from Blockchain.info is needed as well.
 
 ### Usage
+
+Install the gem dependencies locally with bundle:
+
+```
+bundle install --path vendor/bundle
+```
 
 If setting up with Unicorn, from the project directory run:
 
