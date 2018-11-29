@@ -1,36 +1,21 @@
 #!/usr/bin/env ruby
-
 require 'bundler/setup'
 require 'blockchain'
-require 'sinatra/base'
-require 'redis'
+require 'sinatra'
 
-class Btconvert < Sinatra::Base
+get '/' do
+  'cryvert: no currency passed'
+end
 
-  redis = Redis.new(:host => "127.0.0.1", :port => "6379", :db => "11")
-  
-  get '/btconvert' do
-    body "noidontwantthat"
+get '/btc' do
+  if params[:btc].nil?
+    'BTC value not passed!'
+  else
+    cur = params.fetch("cur", "USD")
+    toConv = params[:btc].to_f
+    btcStats = Blockchain::get_ticker()
+    oneBtc = btcStats["#{cur}"].p15min
+    convAmt = toConv * oneBtc
+    body "#{convAmt}"
   end
-  
-  post '/btconvert' do
-    if params[:btc].nil?
-      body "BTC value not passed!"
-    else
-      cur = params.fetch("cur", "USD")
-      isCached = redis.get("#{cur}:btc")
-      if isCached.nil?
-        toConv = params[:btc].to_f
-        btcStats = Blockchain::get_ticker()
-        oneBtc = btcStats["#{cur}"].p15min
-        redis.set("#{cur}:btc", oneBtc.to_f)
-        redis.expire("#{cur}:btc", 3600)
-        convAmt = toConv * oneBtc
-        body "#{convAmt}"
-      else
-        body "#{isCached}"
-      end
-    end
-  end
-
 end
