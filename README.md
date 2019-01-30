@@ -8,6 +8,8 @@ BTConvert was tested with Ruby 2.1, but may work on other versions. Unicorn and 
 
 ### Usage
 
+*** Needs Updating; Currently not accurate ***
+
 Install the gem dependencies locally with bundle:
 
 ```

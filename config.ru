@@ -1,6 +1,3 @@
-require 'bundler/setup'
-require 'sinatra'
+require './app.rb'
 
-require File.expand_path '../btconvert.rb', __FILE__
-
-run Btconvert
+run Sinatra::Application
